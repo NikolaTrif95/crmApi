@@ -1,17 +1,16 @@
-const express = require("express");
-const userModel = require("./model/schema");
-const app = express();
-const interfaces = require("./interface");
+const express = require("express"),
+    //middlewares = require("../middlewares/routeMiddlewares"),
+    endpoitns = require("../interfaces/endpoitns"),
+    services = require("../service");
 
-app.post("/user");
-
-app.delete("/user");
-
-app.put("/user");
-
-app.get("/users");
-
-app.put("/permission");
+        /*
+        * Route creating board
+        * POST /1/boards/
+        * @queryParam apiKey - required
+        * @queryParam serverToken - required
+        * @param name - required
+        */
+        router.route(`${routePrefix}/`).post(middlewares.checkName, endpoitns.boardsEndpoints.createBoard);
 
 
 
