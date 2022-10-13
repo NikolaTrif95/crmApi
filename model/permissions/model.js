@@ -1,8 +1,10 @@
-const permissionModel = mongoose.model("Permissions", PermissionsSchema);
+const mongoose = require("mongoose");
+const PermissionSchema = require("./schema");
+const permissionModel = mongoose.model("Permissions", PermissionSchema);
 
 module.exports = {
     
-    createPermission: (data) => {
+    createPermission: async (data) => {
         try {
             const permission = new permissionModel(data);
             return await permissionModel.save();
@@ -11,7 +13,7 @@ module.exports = {
         }
     },
     
-    readPermission: (data) => {
+    readPermission: async (data) => {
         try {
             return await permissionModel.find({_id: data.id});
         } catch (error) {
@@ -19,7 +21,7 @@ module.exports = {
         }
     },
     
-    updatePermission: (data) => {
+    updatePermission: async (data) => {
         try {
             return await permissionModel.updateOne({_id: data.id}, {$set: data});
         } catch (error) {
@@ -27,7 +29,7 @@ module.exports = {
         }
     },
     
-    deletePermission: (data) => {
+    deletePermission: async (data) => {
         try {
             return await permissionModel.remove({_id: data.id});
         } catch (error) {

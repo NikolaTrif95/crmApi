@@ -1,5 +1,5 @@
 const permissionApi = require("../../service"),
-    config = require("../config/config");
+    config = require("../../config/config");
 
 
     module.exports = {

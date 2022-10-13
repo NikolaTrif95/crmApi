@@ -1,5 +1,4 @@
-const model = require("../../model/permission/model"),
-    {logger} = require("../logger")
+const model = require("../../model/permissions/model");
 
 module.exports = {
 

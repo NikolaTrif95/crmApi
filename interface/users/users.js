@@ -1,6 +1,5 @@
-const { response } = require("../../router");
 const userApi = require("../../service"),
-    config = require("../config/config");
+    config = require("../../config/config");
 
 module.exports = {
     createUser: async (request, response) => {
@@ -40,7 +39,8 @@ module.exports = {
     },
     getUsers: async (request, response) => {
         try {
-            const users = await userApi.getUsers(request.body.id);
+            console.log("helooooooo WHAT USP")
+            const users = await userApi.getUsers();
             response.sent(users);
         } catch (error) {
             response.status(500).send(error);

@@ -1,5 +1,4 @@
-const model = require("../../model/users/model"),
-    {logger} = require("../logger")
+const model = require("../../model/users/model");
 
 module.exports = {
 
@@ -37,6 +36,7 @@ module.exports = {
 
     getUsers: async () => {
         try {
+            console.log("SDASDSADASDASDASDSA")
             return await model.getUsers();
         } catch (err) {
             throw err;

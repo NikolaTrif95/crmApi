@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+const UserSchema = require("./schema")
 const userModel = mongoose.model("User", UserSchema);
 
 module.exports = {
@@ -11,7 +13,7 @@ module.exports = {
         }
     },
     
-    readUser: (data) => {
+    readUser: async (data) => {
         try {
             return await userModel.find({_id: data.id})
             .populate({
@@ -22,7 +24,7 @@ module.exports = {
         }
     },
     
-    updateUser: (data) => {
+    updateUser: async (data) => {
         try {
             return await userModel.updateOne({_id: data.id}, {$set: data});
         } catch (error) {
@@ -30,7 +32,7 @@ module.exports = {
         }
     },
     
-    deleteUser: (data) => {
+    deleteUser: async (data) => {
         try {
             return await userModel.remove({_id: data.id});
         } catch (error) {
@@ -38,7 +40,7 @@ module.exports = {
         }
     },
     
-    getUsers: (data) => {
+    getUsers: async (data) => {
         try {
             return await userModel.find({})
             .populate({
