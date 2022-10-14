@@ -5,52 +5,47 @@ const express = require("express"),
 
 
 module.exports = (function () {
-        const router = express.Router();
-        const registerUserRoutes = (service, routePrefix) => {
-        /*
-        * Route creating user
-        * POST /user/
-        * @param firstName - required
-        * @param lastName - required
-        * @param username - required
-        * @param password - required
-        * @param email - required
-        * @param status - required
-        * @param name - required
-        */
-        router.route(`${routePrefix}/`).post(user.createUser);
+    const router = express.Router();
+    const registerPermissionRoutes = (services, routePrefix) => {
+    /*
+    * Route creating Permission
+    * POST /Permission/
+    * @param firstName - required
+    * @param lastName - required
+    */
+    router.route(`${routePrefix}/`).post(permission.createPermission);
 
-        /*
-        * Route for reading user
-        * GET /users/{id}
-        * @param id - required
-        */
-        router.route(`${routePrefix}/`).post(user.readUser);
+    /*
+    * Route for reading Permission
+    * GET /Permissions/{id}
+    * @param id - required
+    */
+    router.route(`${routePrefix}/`).get(permission.readPermission);
 
-        /*
-        * Route for updating user
-        * PUT /users/{id}
-        * @param id - required
-        */
-        router.route(`${routePrefix}/`).post(user.updateUser);
+    /*
+    * Route for updating Permission
+    * PUT /Permissions/{id}
+    * @param id - required
+    */
+    router.route(`${routePrefix}/`).put(permission.updatePermission);
 
-        /*
-        * Route for deleting user
-        * DELETE /users/{id}
-        * @param id - required
-        */
-        router.route(`${routePrefix}/`).post(user.deleteUser);
+    /*
+    * Route for deleting Permission
+    * DELETE /Permissions/{id}
+    * @param id - required
+    */
+    router.route(`${routePrefix}/`).delete(permission.deletePermission);
 
-        /*
-        * Route for getting lists on board
-        * GET /users/
-        */
-        router.route(`${routePrefix}/`).post(user.getUsers);
+    /*
+    * Route for getting lists on board
+    * GET /Permissions/
+    */
+    //router.route(`${routePrefix}/`).get(permission.getPermissions);
 
-        };
-        registerUserRoutes(services, "/users");
-        return router;
-});
+    };
+    registerPermissionRoutes(services, "/permission");
+    return router;
+})();
 
 
 

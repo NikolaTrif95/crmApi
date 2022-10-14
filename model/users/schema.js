@@ -2,28 +2,28 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UserSchema = new mongoose.Schema({
-    firstName: {
+    first_name: {
         type: String,
         required: true,
     },
-    lastName: {
-        type: Number,
+    last_name: {
+        type: String,
         required: true,
     },
     username: {
-        type: Number,
+        type: String,
         required: true,
     },
     password: {
-        type: Number,
+        type: String,
         required: true,
     },
     email: {
-        type: Number,
+        type: String,
         required: true,
     },
     status: {
-        type: Number,
+        type: String,
         required: true,
     },
     permissionId :[{ type: Schema.Types.ObjectId, ref: 'Permissions' }]

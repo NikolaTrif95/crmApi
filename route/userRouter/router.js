@@ -50,7 +50,6 @@ module.exports = (function () {
         };
 
         registerUserRoutes(services, "/users");
-        console.log(router)
         return router;
 })();
 

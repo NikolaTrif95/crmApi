@@ -18,9 +18,9 @@ module.exports = {
         }
     },
 
-    updatePermission: async (data) => {
+    updatePermission: async (data, id) => {
         try {
-            return await model.updatePermission(data.body, data.id);
+            return await model.updatePermission(data.body, id);
         } catch (err) {
             throw err;
         }

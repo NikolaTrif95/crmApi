@@ -7,31 +7,31 @@ module.exports = {
     createPermission: async (data) => {
         try {
             const permission = new permissionModel(data);
-            return await permissionModel.save();
+            return await permission.save();
         } catch (error) {
             console.log(error);
         }
     },
     
-    readPermission: async (data) => {
+    readPermission: async (id) => {
         try {
-            return await permissionModel.find({_id: data.id});
+            return await permissionModel.find({_id: id});
         } catch (error) {
             console.log(error);
         }
     },
     
-    updatePermission: async (data) => {
+    updatePermission: async (data, id) => {
         try {
-            return await permissionModel.updateOne({_id: data.id}, {$set: data});
+            return await permissionModel.updateOne({_id: id}, {$set: data});
         } catch (error) {
             console.log(error);
         }
     },
     
-    deletePermission: async (data) => {
+    deletePermission: async (id) => {
         try {
-            return await permissionModel.remove({_id: data.id});
+            return await permissionModel.remove({_id: id});
         } catch (error) {
             console.log(error);
         }
