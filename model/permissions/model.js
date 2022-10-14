@@ -35,5 +35,14 @@ module.exports = {
         } catch (error) {
             console.log(error);
         }
+    },
+    getObjectIdByCode: async (code) => {
+        try {
+            const permissionObject = await permissionModel.find({code:code})
+            console.log(permissionObject)
+            return {"permission": permissionObject[0]._id};
+        } catch (error) {
+            
+        }
     }
 };

@@ -20,7 +20,7 @@ module.exports = {
 
     updatePermission: async (data, id) => {
         try {
-            return await model.updatePermission(data.body, id);
+            return await model.updatePermission(data, id);
         } catch (err) {
             throw err;
         }
@@ -38,6 +38,13 @@ module.exports = {
         try {
             return await model.getPermissions();
         } catch (err) {
+            throw err;
+        }
+    },
+    getObjectIdByCode: async (code) => {
+        try {
+            return await model.getObjectIdByCode(code);
+        } catch(err) {
             throw err;
         }
     }

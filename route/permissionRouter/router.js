@@ -20,21 +20,21 @@ module.exports = (function () {
     * GET /Permissions/{id}
     * @param id - required
     */
-    router.route(`${routePrefix}/`).get(permission.readPermission);
+    router.route(`${routePrefix}/:id`).get(permission.readPermission);
 
     /*
     * Route for updating Permission
     * PUT /Permissions/{id}
     * @param id - required
     */
-    router.route(`${routePrefix}/`).put(permission.updatePermission);
+    router.route(`${routePrefix}/:id`).put(permission.updatePermission);
 
     /*
     * Route for deleting Permission
     * DELETE /Permissions/{id}
     * @param id - required
     */
-    router.route(`${routePrefix}/`).delete(permission.deletePermission);
+    router.route(`${routePrefix}/:id`).delete(permission.deletePermission);
 
     /*
     * Route for getting lists on board
@@ -42,7 +42,15 @@ module.exports = (function () {
     */
     //router.route(`${routePrefix}/`).get(permission.getPermissions);
 
-    };
+    
+
+   /*
+    * Route for getting lists on board
+    * POST /Permissions/
+    */
+    router.route(`${routePrefix}/:id`).post(permission.assignPermission);
+
+};
     registerPermissionRoutes(services, "/permission");
     return router;
 })();

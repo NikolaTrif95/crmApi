@@ -70,7 +70,7 @@ module.exports = {
             console.log(error)
             response.status(500).end(error);
         }
-    }
+    },
 };
 
 const convertToNum = function (str) {

@@ -29,8 +29,9 @@ module.exports = {
     updateUser: async (data, id) => {
         try {
             console.log(data)
+            let test = {"permissionId":data}
             console.log(id)
-            return await userModel.updateOne({_id: id}, {$set: data});
+            return await userModel.updateOne({_id: id}, {$set: test});
         } catch (error) {
             console.log(error);
             throw error;

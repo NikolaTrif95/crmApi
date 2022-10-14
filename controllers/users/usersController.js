@@ -13,7 +13,6 @@ module.exports = {
 
     readUser: async (id) => {
         try {
-            console.log(id, "IDDD?")
             return await model.readUser(id);
         } catch (err) {
             throw err;
@@ -22,6 +21,7 @@ module.exports = {
 
     updateUser: async (data, id) => {
         try {
+            console.log(data, id, "aASDASDASDASDASDASDSADSA")
             return await model.updateUser(data, id);
         } catch (err) {
             throw err;
@@ -38,7 +38,6 @@ module.exports = {
 
     getUsers: async (limit, skip, filter, order) => {
         try {
-            console.log("SDASDSADASDASDASDSA")
             return await model.getUsers(limit, skip, filter, order);
         } catch (err) {
             throw err;
