@@ -44,6 +44,7 @@ module.exports = (function () {
 
    /*
     * Route for assign permission
+    * @param id - required
     * POST /Permissions/
     */
     router.route(`${routePrefix}/:id`).post(middleware.checkId, permission.assignPermission);

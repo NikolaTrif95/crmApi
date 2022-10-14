@@ -1,4 +1,5 @@
 const permissionApi = require("../../service"),
+    {logger} = require("../../logger"),
     config = require("../../config/config");
 
 
@@ -6,10 +7,10 @@ const permissionApi = require("../../service"),
         createPermission: async (request, response) => {
             try {
                 await permissionApi.permissions.createPermission(request.body);
-                response.send("Permission created");
+                response.send(config.responses.permission200);
             } catch (error) {
                 logger.error(`Error while creating permission::${error}`);
-                response.status(500).send("Failed while creating permission");
+                response.status(500).send(config.responses.permission500);
             }
         },
         readPermission: async (request, response) => {
@@ -18,36 +19,40 @@ const permissionApi = require("../../service"),
                 response.send(JSON.stringify(permission));
             } catch (error) {
                 logger.error(`Error while reading permission::${error}`);
-                response.status(500).send("Error while reading permission");
+                response.status(500).send(config.responses.read500);
             }
         },
         updatePermission: async (request, response) => {
             try {
                 await permissionApi.permissions.updatePermission(request.body, request.params.id);
-                response.status(200).send("Permission updated");
+                response.status(200).send(config.responses.update200);
             } catch (error) {
                 logger.error(`Error while updating permission::${error}`);
-                response.status(500).send("Error while updating permission")
+                response.status(500).send(config.responses.update500)
             }
         },
         deletePermission: async (request, response) => {
             try {
                 await permissionApi.permissions.deletePermission(request.params.id);
-                response.status(200).send("Permission deleted");
+                response.status(200).send(config.responses.delete200);
             } catch (error) {
                 logger.error(`Error while deleting permission::${error}`);
-                response.status(500).send("Error while deleting permission");
+                response.status(500).send(config.responses.delete500);
             }
         },
         assignPermission: async (request, response) => {
             try {
                 let permission = await permissionApi.permissions.getObjectIdByCode(request.body.code);
-                let permissionId = permission.permission.valueOf();
-                await permissionApi.user.updateUser(permissionId, request.params.id);
-                response.status(200).send("Permission assigned");
+                if(permission) {
+                    let permissionId = permission.permission.valueOf();
+                    await permissionApi.user.updateUserPermission(permissionId, request.params.id);
+                    return response.status(200).send(config.responses.assign200);
+                } else {
+                    response.status(200).send(config.responses.permissionNotExists);
+                }
             } catch (error) {
                 logger.error(`Error while assigning permission::${error}`);
-                response.status(500).send("Error while asinging permission to user");    
+                response.status(500).send(config.responses.assign500);    
             }
         }
     }; 

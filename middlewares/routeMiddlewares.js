@@ -27,7 +27,7 @@ module.exports = {
     },
 
 
-        checkId: (req, res, next) => {
+    checkId: (req, res, next) => {
         if(!req.params || !req.params.id) {
             return res.status(400).json({
                 status: "Fail",

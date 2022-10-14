@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const UserSchema = require("./schema")
+const UserSchema = require("./schema");
+const {logger} = require("../../logger");
 const userModel = mongoose.model("User", UserSchema);
 
 module.exports = {
@@ -9,7 +10,7 @@ module.exports = {
             const user = new userModel(data);
             return await user.save();
         } catch (error) {
-            console.log(error);
+            throw error;
             
         }
     },
@@ -21,19 +22,14 @@ module.exports = {
                 path: "permissionId"
             })
         } catch (error) {
-            console.log(error);
             throw error;
         }
     },
     
     updateUser: async (data, id) => {
         try {
-            console.log(data)
-            let test = {"permissionId":data}
-            console.log(id)
-            return await userModel.updateOne({_id: id}, {$set: test});
+            return await userModel.updateOne({_id: id}, {$set: data});
         } catch (error) {
-            console.log(error);
             throw error;
         }
     },
@@ -42,7 +38,6 @@ module.exports = {
         try {
             return await userModel.remove({_id: id});
         } catch (error) {
-            console.log(error);
             throw error;
         }
     },
@@ -66,8 +61,10 @@ module.exports = {
                 count: await userModel.find(match).count()
             }
         } catch (error) {
-            console.log(error);
             throw error;
         }
+    },
+    updateUserPermission: async (data, id) => {
+        await userModel.updateOne({_id: id}, {$push: { permissionId: data }})
     }
 };

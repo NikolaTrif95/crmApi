@@ -60,5 +60,17 @@ module.exports = {
         } catch (err) {
             throw err;
         }
-    }
+    },
+    updateUserPermission: async (data, id) => {
+        try {
+            return await model.updateUserPermission(data, id);
+        } catch (err) {
+            throw err;
+        }
+    },
+};
+
+
+const convertToNum = (str) => {
+    return str === "asc" ? 1 : -1;
 };

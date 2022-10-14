@@ -7,10 +7,10 @@ module.exports = {
         try {
             logger.info("Starting Registration")
             await userApi.user.createUser(request.body);
-            response.status(200).send("User created");
+            response.status(200).send(config.responses.create200);
         } catch (error) {
             logger.error(`Error while creating user::${error}`);
-            response.send(error);
+            response.status(500).send(config.responses.create500);
         }
     },
     readUser: async (request, response) => {
@@ -19,25 +19,25 @@ module.exports = {
             response.send(user);
         } catch (error) {
             logger.error(`Error while reading user::${error}`);
-            response.status(500).end(JSON.stringify(error));
+            response.status(500).end(config.responses.read500);
         }
     },
     updateUser: async (request, response) => {
         try {
             await userApi.user.updateUser(request.body, request.params.id);
-            response.status(200).send("User updated");
+            response.status(200).send(config.responses.update200);
         } catch (error) {
             logger.error(`Error while updating user::${error}`);
-            response.status(500).send("Updating failed");
+            response.status(500).send(config.responses.update500);
         }
     },
     deleteUser: async (request, response) => {
         try {
             await userApi.user.deleteUser(request.params.id);
-            response.status(200).send("User deleted");
+            response.status(200).send(config.responses.delete200);
         } catch (error) {
             logger.error(`Error while deleting user::${error}`);
-            response.status(500).end(error);
+            response.status(500).end(config.responses.delete500);
         }
     },
     getUsers: async (request, response) => {
@@ -46,11 +46,7 @@ module.exports = {
             response.send(users);
         } catch (error) {
             logger.error(`Error while getting all users::${error}`);
-            response.status(500).end(error);
+            response.status(500).end(config.responses.read500);
         }
     },
-};
-
-const convertToNum = function (str) {
-    return str === "asc" ? -1 : 1;
 };

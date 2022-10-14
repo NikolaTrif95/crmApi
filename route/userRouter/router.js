@@ -45,7 +45,7 @@ module.exports = (function () {
     * Route for getting all users
     * GET /users/
     */
-    router.route(`${routePrefix}/`).get(middleware.checkId, user.getUsers);
+    router.route(`${routePrefix}/`).get(user.getUsers);
 
 
     };

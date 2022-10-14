@@ -9,15 +9,14 @@ module.exports = {
             const permission = new permissionModel(data);
             return await permission.save();
         } catch (error) {
-            console.log(error);
-        }
+            throw error;        }
     },
     
     readPermission: async (id) => {
         try {
             return await permissionModel.find({_id: id});
         } catch (error) {
-            console.log(error);
+            throw error;
         }
     },
     
@@ -25,7 +24,7 @@ module.exports = {
         try {
             return await permissionModel.updateOne({_id: id}, {$set: data});
         } catch (error) {
-            console.log(error);
+            throw error;
         }
     },
     
@@ -33,16 +32,17 @@ module.exports = {
         try {
             return await permissionModel.remove({_id: id});
         } catch (error) {
-            console.log(error);
+            throw error;
         }
     },
     getObjectIdByCode: async (code) => {
         try {
-            const permissionObject = await permissionModel.find({code:code})
-            console.log(permissionObject)
-            return {"permission": permissionObject[0]._id};
+            const permissionObject = await permissionModel.find({code:code});
+            if(permissionObject.length !== 0) {
+                return {"permission": permissionObject[0]._id};
+            } return;
         } catch (error) {
-            
+            throw error;
         }
     }
 };

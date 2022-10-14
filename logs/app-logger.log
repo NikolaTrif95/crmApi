@@ -1,1 +1,12 @@
 error: Oct-14-2022 14:21:32: 	HELOOOOOOOO
+error: Oct-14-2022 16:31:06: 	Error while assigning permission::Error: Invalid atomic update value for $set. Expected an object, received string
+error: Oct-14-2022 16:34:03: 	Error while assigning permission::TypeError: Cannot read properties of undefined (reading '_id')
+error: Oct-14-2022 16:35:46: 	Error while assigning permission::TypeError: Cannot read properties of undefined (reading '_id')
+error: Oct-14-2022 16:38:27: 	Error while assigning permission::TypeError: Cannot read properties of undefined (reading '_id')
+error: Oct-14-2022 16:43:09: 	Error while assigning permission::Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+error: Oct-14-2022 16:43:38: 	Error while assigning permission::Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+error: Oct-14-2022 16:45:31: 	Error while assigning permission::Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+error: Oct-14-2022 16:59:22: 	Error while assigning permission::TypeError: Cannot read properties of undefined (reading 'assign200')
+error: Oct-14-2022 16:59:57: 	Error while assigning permission::TypeError: Cannot read properties of undefined (reading 'assign200')
+error: Oct-14-2022 17:01:10: 	Error while assigning permission::TypeError: Cannot read properties of undefined (reading 'assign200')
+error: Oct-14-2022 17:13:10: 	Error while creating permission::ValidationError: code: Path `code` is required.

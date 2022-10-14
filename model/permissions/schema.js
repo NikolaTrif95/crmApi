@@ -6,10 +6,12 @@ const PermissionsSchema = new mongoose.Schema({
     code: {
         type: String,
         required: true,
+        unique: true
     },
     description: {
         type: String,
         required: true,
+        unique: true
   
   },
 });
