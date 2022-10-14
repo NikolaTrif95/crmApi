@@ -1,5 +1,5 @@
 const express = require("express"),
-    //middlewares = require("../middlewares/routeMiddlewares"),
+    middleware = require("../../middlewares/routeMiddlewares"),
     user = require("../../interface/users/users"),
     services = require("../../service");
 
@@ -18,34 +18,34 @@ module.exports = (function () {
     * @param status - required
     * @param name - required
     */
-    router.route(`${routePrefix}/`).post(user.createUser);
+    router.route(`${routePrefix}/`).post(middleware.checkRequestData, user.createUser);
 
     /*
     * Route for reading user
     * GET /users/{id}
     * @param id - required
     */
-    router.route(`${routePrefix}/:id`).get(user.readUser);
+    router.route(`${routePrefix}/:id`).get(middleware.checkId, user.readUser);
 
     /*
     * Route for updating user
     * PUT /users/{id}
     * @param id - required
     */
-    router.route(`${routePrefix}/:id`).put(user.updateUser);
+    router.route(`${routePrefix}/:id`).put(middleware.checkId, user.updateUser);
 
     /*
     * Route for deleting user
     * DELETE /users/{id}
     * @param id - required
     */
-    router.route(`${routePrefix}/:id`).delete(user.deleteUser);
+    router.route(`${routePrefix}/:id`).delete(middleware.checkId, user.deleteUser);
 
     /*
-    * Route for getting lists on board
+    * Route for getting all users
     * GET /users/
     */
-    router.route(`${routePrefix}/`).get(user.getUsers);
+    router.route(`${routePrefix}/`).get(middleware.checkId, user.getUsers);
 
 
     };

@@ -1,5 +1,5 @@
 const express = require("express"),
-    //middlewares = require("../middlewares/routeMiddlewares"),
+    middleware = require("../../middlewares/routeMiddlewares"),
     permission = require("../../interface/permissions/permissions"),
     services = require("../../service");
 
@@ -10,45 +10,43 @@ module.exports = (function () {
     /*
     * Route creating Permission
     * POST /Permission/
-    * @param firstName - required
-    * @param lastName - required
+    * @param description - required
+    * @param code - required
     */
-    router.route(`${routePrefix}/`).post(permission.createPermission);
+    router.route(`${routePrefix}/`).post(middleware.checkPermissionRequestData, permission.createPermission);
 
     /*
     * Route for reading Permission
     * GET /Permissions/{id}
     * @param id - required
     */
-    router.route(`${routePrefix}/:id`).get(permission.readPermission);
+    router.route(`${routePrefix}/:id`).get(middleware.checkId, permission.readPermission);
 
     /*
     * Route for updating Permission
     * PUT /Permissions/{id}
     * @param id - required
     */
-    router.route(`${routePrefix}/:id`).put(permission.updatePermission);
+    router.route(`${routePrefix}/:id`).put(middleware.checkId, permission.updatePermission);
 
     /*
     * Route for deleting Permission
     * DELETE /Permissions/{id}
     * @param id - required
     */
-    router.route(`${routePrefix}/:id`).delete(permission.deletePermission);
+    router.route(`${routePrefix}/:id`).delete(middleware.checkId, permission.deletePermission);
 
     /*
-    * Route for getting lists on board
+    * Route for getting all permissions
     * GET /Permissions/
     */
     //router.route(`${routePrefix}/`).get(permission.getPermissions);
 
-    
-
    /*
-    * Route for getting lists on board
+    * Route for assign permission
     * POST /Permissions/
     */
-    router.route(`${routePrefix}/:id`).post(permission.assignPermission);
+    router.route(`${routePrefix}/:id`).post(middleware.checkId, permission.assignPermission);
 
 };
     registerPermissionRoutes(services, "/permission");
